@@ -11,18 +11,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{3E2CFE92
 		Directory.Build.props = Directory.Build.props
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Data", "1. Data", "{4B1A090F-70E0-45E0-BF5D-AA24D466D832}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaffold", "Scaffold\Scaffold.csproj", "{66D7AA25-71B5-4850-9CCD-A654A68C88AA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66D7AA25-71B5-4850-9CCD-A654A68C88AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66D7AA25-71B5-4850-9CCD-A654A68C88AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66D7AA25-71B5-4850-9CCD-A654A68C88AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66D7AA25-71B5-4850-9CCD-A654A68C88AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{66D7AA25-71B5-4850-9CCD-A654A68C88AA} = {4B1A090F-70E0-45E0-BF5D-AA24D466D832}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4FED20DD-BAE7-46D5-ABA3-DBA071EA28B7}
 	EndGlobalSection
 EndGlobal

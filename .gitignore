@@ -14,3 +14,6 @@
 
 # TestResults
 [Tt]est[Rr]esults/
+
+# Secure files
+/Scaffold/Properties/launchSettings.json
