@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="../Scaffold/Scaffold.targets" />
+	<Import Project="ScaffoldArguments.targets" Condition="Exists('ScaffoldArguments.targets')" />
+
+	<PropertyGroup>
+		<RootNamespace>MakingCents.Database</RootNamespace>
+		<ScaffoldContextNamespace>MakingCents.Database</ScaffoldContextNamespace>
+		<ScaffoldModelNamespace>MakingCents.Database.Models</ScaffoldModelNamespace>
+		<ScaffoldOutput>$(MSBuildThisFileDirectory)Models/Scaffold.g.cs</ScaffoldOutput>
+		<ScaffoldVerbosity>d</ScaffoldVerbosity>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Scripts/*.sql" />
+		<EmbeddedResource Include="Scripts/*.sql" Script="true" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<Folder Include="Models\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="linq2db" Version="4.4.0" />
+	</ItemGroup>
+
+</Project>
