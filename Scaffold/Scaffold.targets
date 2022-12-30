@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Project>
 
-	<Target Name="Scaffold" BeforeTargets="PrepareForBuild">
+	<PropertyGroup>
+		<ScaffoldsDependsOn>
+			$(ScaffoldsDependsOn);
+			PrepareForScaffold;
+			ScaffoldCore;
+		</ScaffoldsDependsOn>
+	</PropertyGroup>
+
+	<Target
+		Name="Scaffold"
+		DependsOnTargets="$(ScaffoldsDependsOn)"
+		BeforeTargets="PrepareForBuild">
+	</Target>
+
+	<Target Name="PrepareForScaffold">
 		<PropertyGroup>
 			<ScaffoldDetailed>low</ScaffoldDetailed>
 			<ScaffoldDetailed Condition="'$(ScaffoldVerbosity)' == 'detailed' Or '$(ScaffoldVerbosity)' == 'd' Or '$(ScaffoldVerbosity)' == 'diagnostic' Or '$(ScaffoldVerbosity)' == 'diag'">high</ScaffoldDetailed>
@@ -21,18 +35,19 @@
 
 		<ItemGroup>
 			<ScaffoldInput Remove="@(ScaffoldInput)" />
-			<ScaffoldInput Include="--output-dir=&quot;$(ScaffoldOutput)&quot;" />
+			<ScaffoldInput Include="--output-file=&quot;$(ScaffoldOutput)&quot;" />
 			<ScaffoldInput Include="--context-namespace=&quot;$(ScaffoldContextNamespace)&quot;" />
 			<ScaffoldInput Include="--model-namespace=&quot;$(ScaffoldModelNamespace)&quot;" />
 			<ScaffoldInput Include="--connection-string=&quot;$(ScaffoldConnectionString)&quot;" />
 		</ItemGroup>
 
 		<ItemGroup>
-			<CustomAdditionalCompileInputs Include="$(ScaffoldOutput)" />
+			<Compile Remove="$(ScaffoldOutput)" />
+			<Compile Include="$(ScaffoldOutput)" />
 		</ItemGroup>
 	</Target>
 
-	<Target Name="ScaffoldRunner" AfterTargets="Scaffold" Inputs="@(ScaffoldFiles);$(MSBuildThisFileDirectory)/bin/$(Configuration)/net7.0/scaffold.exe" Outputs="$(ScaffoldOutput)">
+	<Target Name="ScaffoldCore" Inputs="@(ScaffoldFiles);$(MSBuildThisFileDirectory)/bin/$(Configuration)/net7.0/scaffold.exe" Outputs="$(ScaffoldOutput)">
 		<Exec Command="&quot;$(MSBuildThisFileDirectory)/bin/$(Configuration)/net7.0/scaffold.exe&quot; @(ScaffoldInput->'%(Identity)', ' ') -- @(ScaffoldFiles->'&quot;%(FullPath)&quot;', ' ')"
 					ConsoleToMSBuild="true" StandardOutputImportance="$(ScaffoldDetailed)" />
 	</Target>

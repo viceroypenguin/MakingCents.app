@@ -28,16 +28,10 @@ static async Task<int> Main(ProgramArguments args)
 	try
 	{
 		var codeFiles = await GenerateScaffold(args);
-		var dir = args.OptOutputDir;
-		Directory.CreateDirectory(dir);
 
-		foreach (var (file, text) in codeFiles)
-		{
-			Console.WriteLine($"Saving schema file {file}");
-			await File.WriteAllTextAsync(
-				Path.Combine(dir, file),
-				text);
-		}
+		var file = args.OptOutputFile;
+		Directory.CreateDirectory(Path.GetDirectoryName(file)!);
+		await File.WriteAllTextAsync(file, codeFiles[0].Code);
 
 		return 0;
 	}
@@ -145,5 +139,7 @@ static ScaffoldOptions GetScaffoldOptions(string modelsNamespace)
 	settings.DataModel.GenerateFindExtensions = LinqToDB.DataModel.FindTypes.None;
 
 	settings.CodeGeneration.Namespace = modelsNamespace;
+	settings.CodeGeneration.ClassPerFile = false;
+
 	return settings;
 }

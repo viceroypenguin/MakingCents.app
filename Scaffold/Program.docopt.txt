@@ -5,7 +5,7 @@ Usage:
        --connection-string=STR 
        --context-namespace=NAMESPACE 
        --model-namespace=NAMESPACE 
-       --output-dir=DIR 
+       --output-file=FILE 
        [--] FILE ...
   scaffolder.exe (-h | --help)
 
@@ -14,4 +14,4 @@ Options:
   --connection-string=STR                     Connection String.
   --context-namespace=NAMESPACE               Context Namespace.
   --model-namespace=NAMESPACE                 Model Namespace.
-  --output-dir=DIR                            Output directory.
+  --output-file=FILE                          Output file.

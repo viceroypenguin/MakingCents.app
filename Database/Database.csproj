@@ -10,7 +10,7 @@
 	<PropertyGroup Label="Scaffolder">
 		<ScaffoldContextNamespace>MakingCents.Database</ScaffoldContextNamespace>
 		<ScaffoldModelNamespace>MakingCents.Database.Models</ScaffoldModelNamespace>
-		<ScaffoldOutput>$(MSBuildThisFileDirectory)Models</ScaffoldOutput>
+		<ScaffoldOutput>$(MSBuildThisFileDirectory)Models/Scaffold.g.cs</ScaffoldOutput>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -20,6 +20,8 @@
 
 	<ItemGroup>
 		<Folder Include="Models\" />
+		<Compile Remove="Models\*.cs" />
+		<None Include="Models\*.cs" />
 	</ItemGroup>
 
 	<ItemGroup>

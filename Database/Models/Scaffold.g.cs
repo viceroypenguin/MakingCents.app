@@ -5,12 +5,24 @@
 // </auto-generated>
 // ---------------------------------------------------------------------------------------------------
 
+using LinqToDB;
+using LinqToDB.Data;
 using LinqToDB.Mapping;
+using MakingCents.Database.Models;
 using System;
 
 #pragma warning disable 1573, 1591
 #nullable enable
 
+namespace MakingCents.Database
+{
+	public partial class DbContext : DataConnection
+	{
+		partial void InitDataContext();
+
+		public ITable<VersionHistory> VersionHistories => this.GetTable<VersionHistory>();
+	}
+}
 namespace MakingCents.Database.Models
 {
 	[Table("VersionHistory")]
