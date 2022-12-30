@@ -35,24 +35,28 @@ public partial class DbContext : DataConnection
 			.ToList();
 
 		var scriptsToRun = scripts
-			.Except(executedScripts, StringComparer.OrdinalIgnoreCase)
-			.Except(new[] { "00.VersionHistory.sql", }, StringComparer.OrdinalIgnoreCase)
-			.OrderBy(s => s)
+			.Except(
+				executedScripts.Append("00.VersionHistory.sql"),
+				StringComparer.OrdinalIgnoreCase)
+			.Order()
 			.ToList();
 
 		foreach (var s in scriptsToRun)
 		{
+			var startTime = DateTimeOffset.Now;
 			using (var ts = BeginTransaction())
 			{
 				ExecuteScript(s);
 				ts.Commit();
 			}
+			var endTime = DateTimeOffset.Now;
 
 			this.Insert(
 				new VersionHistory()
 				{
 					SqlFile = s,
-					Timestamp = DateTime.Now,
+					ExecutionStart = startTime,
+					ExecutionEnd = endTime,
 				});
 		}
 	}

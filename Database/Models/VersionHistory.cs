@@ -18,6 +18,7 @@ namespace MakingCents.Database.Models
 	{
 		[Column("VersionHistoryId", IsPrimaryKey = true , IsIdentity = true, SkipOnInsert = true, SkipOnUpdate = true)] public int            VersionHistoryId { get; set; } // int
 		[Column("SqlFile"         , CanBeNull    = false                                                             )] public string         SqlFile          { get; set; } = null!; // varchar(50)
-		[Column("Timestamp"                                                                                          )] public DateTimeOffset Timestamp        { get; set; } // datetimeoffset(7)
+		[Column("ExecutionStart"                                                                                     )] public DateTimeOffset ExecutionStart   { get; set; } // datetimeoffset(7)
+		[Column("ExecutionEnd"                                                                                       )] public DateTimeOffset ExecutionEnd     { get; set; } // datetimeoffset(7)
 	}
 }
