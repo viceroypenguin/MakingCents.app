@@ -35,9 +35,7 @@ public partial class DbContext : DataConnection
 			.ToList();
 
 		var scriptsToRun = scripts
-			.Except(
-				executedScripts.Append("00.VersionHistory.sql"),
-				StringComparer.OrdinalIgnoreCase)
+			.Except(executedScripts, StringComparer.OrdinalIgnoreCase)
 			.Order()
 			.ToList();
 

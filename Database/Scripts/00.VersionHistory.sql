@@ -10,4 +10,7 @@ create table VersionHistory
 	ExecutionEnd datetimeoffset not null,
 );
 
+insert VersionHistory(SqlFile, ExecutionStart, ExecutionEnd)
+values ('00.VersionHistory.sql', sysdatetimeoffset(), sysdatetimeoffset());
+
 end
