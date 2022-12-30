@@ -5,10 +5,12 @@
 
 	<PropertyGroup>
 		<RootNamespace>MakingCents.Database</RootNamespace>
+	</PropertyGroup>
+
+	<PropertyGroup Label="Scaffolder">
 		<ScaffoldContextNamespace>MakingCents.Database</ScaffoldContextNamespace>
 		<ScaffoldModelNamespace>MakingCents.Database.Models</ScaffoldModelNamespace>
-		<ScaffoldOutput>$(MSBuildThisFileDirectory)Models/Scaffold.g.cs</ScaffoldOutput>
-		<ScaffoldVerbosity>d</ScaffoldVerbosity>
+		<ScaffoldOutput>$(MSBuildThisFileDirectory)Models</ScaffoldOutput>
 	</PropertyGroup>
 
 	<ItemGroup>

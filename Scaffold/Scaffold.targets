@@ -21,7 +21,7 @@
 
 		<ItemGroup>
 			<ScaffoldInput Remove="@(ScaffoldInput)" />
-			<ScaffoldInput Include="--output-file=&quot;$(ScaffoldOutput)&quot;" />
+			<ScaffoldInput Include="--output-dir=&quot;$(ScaffoldOutput)&quot;" />
 			<ScaffoldInput Include="--context-namespace=&quot;$(ScaffoldContextNamespace)&quot;" />
 			<ScaffoldInput Include="--model-namespace=&quot;$(ScaffoldModelNamespace)&quot;" />
 			<ScaffoldInput Include="--connection-string=&quot;$(ScaffoldConnectionString)&quot;" />

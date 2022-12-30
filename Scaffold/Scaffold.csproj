@@ -11,6 +11,7 @@
 	<ItemGroup>
 		<PackageReference Include="docopt.net" Version="0.8.1" />
 		<PackageReference Include="linq2db" Version="4.4.0" />
+		<PackageReference Include="linq2db.Tools" Version="4.4.0" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.0.1" />
 	</ItemGroup>
 

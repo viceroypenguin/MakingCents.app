@@ -18,6 +18,3 @@
 # Secure files
 /Database/ScaffoldArguments.targets
 /Scaffold/Properties/launchSettings.json
-
-# Autogen files
-/Database/Models/Scaffold.g.cs
