@@ -3,6 +3,7 @@ using Microsoft.Extensions.Logging;
 
 namespace MakingCents.Database;
 
+[RegisterTransient]
 public sealed partial class DbContext : DataConnection
 {
 	private readonly ILogger<DbContext> _logger;
