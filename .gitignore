@@ -18,3 +18,4 @@
 # Secure files
 /Source/Database/ScaffoldArguments.targets
 /Source/Scaffold/Properties/launchSettings.json
+/Tests/Tests.Common/appsettings.json
