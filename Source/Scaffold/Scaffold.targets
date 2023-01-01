@@ -12,7 +12,7 @@
 	<Target
 		Name="Scaffold"
 		DependsOnTargets="$(ScaffoldsDependsOn)"
-		BeforeTargets="PrepareForBuild">
+		BeforeTargets="PrepareResources">
 	</Target>
 
 	<Target Name="PrepareForScaffold">
