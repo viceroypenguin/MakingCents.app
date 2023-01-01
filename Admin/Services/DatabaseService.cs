@@ -4,7 +4,7 @@ using MakingCents.Database;
 
 namespace MakingCents.Admin.Services;
 
-public class DatabaseService
+public sealed class DatabaseService
 {
 	private readonly DbContext _context;
 
