@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using DocoptNet;
 using LinqToDB.CodeModel;
 using LinqToDB.Data;
+using LinqToDB.DataModel;
 using LinqToDB.DataProvider.SqlServer;
 using LinqToDB.Metadata;
 using LinqToDB.Naming;
@@ -27,11 +28,17 @@ static async Task<int> Main(ProgramArguments args)
 {
 	try
 	{
-		var codeFiles = await GenerateScaffold(args);
+		var code = await GenerateScaffold(args);
+
+		// address bugs in code generation
+		code = Regex.Replace(
+			code,
+			@"nameof\((.*?)\)",
+			@"typeof(MakingCents.Common.$1.LinqToDbValueConverter)");
 
 		var file = args.OptOutputFile;
 		Directory.CreateDirectory(Path.GetDirectoryName(file)!);
-		await File.WriteAllTextAsync(file, codeFiles[0].Code);
+		await File.WriteAllTextAsync(file, code);
 
 		return 0;
 	}
@@ -41,7 +48,7 @@ static async Task<int> Main(ProgramArguments args)
 	}
 }
 
-static async Task<SourceCodeFile[]> GenerateScaffold(ProgramArguments args)
+static async Task<string> GenerateScaffold(ProgramArguments args)
 {
 	var dbName = "MakingCents_Scaffold_" + Guid.NewGuid().ToString().Replace("-", "", StringComparison.Ordinal);
 	var cn = Regex.Unescape(args.OptConnectionString!);
@@ -56,7 +63,7 @@ static async Task<SourceCodeFile[]> GenerateScaffold(ProgramArguments args)
 		var settings = GetScaffoldOptions(args.OptModelNamespace);
 
 		var legacyProvider = new LegacySchemaProvider(conn, settings.Schema, language);
-		var generator = new Scaffolder(language, HumanizerNameConverter.Instance, settings, null);
+		var generator = new Scaffolder(language, HumanizerNameConverter.Instance, settings, new Interceptors());
 		var dataModel = generator.LoadDataModel(legacyProvider, legacyProvider);
 		dataModel.DataContext.Class.Namespace = args.OptContextNamespace;
 
@@ -66,7 +73,7 @@ static async Task<SourceCodeFile[]> GenerateScaffold(ProgramArguments args)
 			dataModel,
 			MetadataBuilders.GetAttributeBasedMetadataBuilder(generator.Language, builder),
 			SqlBoolEqualityConverter.Create(generator.Language));
-		return generator.GenerateSourceCode(dataModel, files);
+		return generator.GenerateSourceCode(dataModel, files)[0].Code;
 	}
 	finally
 	{
@@ -136,10 +143,35 @@ static ScaffoldOptions GetScaffoldOptions(string modelsNamespace)
 	settings.DataModel.HasUntypedOptionsConstructor = false;
 	settings.DataModel.HasTypedOptionsConstructor = false;
 	settings.DataModel.ContextClassName = "DbContext";
-	settings.DataModel.GenerateFindExtensions = LinqToDB.DataModel.FindTypes.None;
+	settings.DataModel.GenerateFindExtensions = FindTypes.None;
 
 	settings.CodeGeneration.Namespace = modelsNamespace;
 	settings.CodeGeneration.ClassPerFile = false;
 
 	return settings;
+}
+
+internal class Interceptors : ScaffoldInterceptors
+{
+	public override void PreprocessEntity(ITypeParser typeParser, EntityModel entityModel)
+	{
+		foreach (var column in entityModel.Columns)
+			if (column.Property.Name.EndsWith("Id", StringComparison.OrdinalIgnoreCase))
+			{
+				var idType = typeParser.Parse("MakingCents.Common.Ids." + column.Property.Name, valueType: true);
+				column.Property.Type = idType;
+				column.Property.CustomAttributes = new()
+				{
+					new CodeAttribute(
+						new CodeTypeToken(typeParser.Parse<LinqToDB.Mapping.ValueConverterAttribute>()),
+						parameters: Array.Empty<ICodeExpression>(),
+						namedParameters: new[]
+						{
+							new CodeAttribute.CodeNamedParameter(
+								new CodeIdentifier("ConverterType", true),
+								new CodeNameOf(new CodeTypeReference(idType))),
+						}),
+				};
+			}
+	}
 }

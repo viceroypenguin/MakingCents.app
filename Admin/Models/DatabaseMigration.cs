@@ -1,6 +1,7 @@
 ﻿namespace MakingCents.Admin.Models;
+
 public record DatabaseMigration(
-	int VersionHistoryId,
+	VersionHistoryId VersionHistoryId,
 	string SqlFile,
 	DateTimeOffset ApplicationTime,
 	TimeSpan ExecutionTime);

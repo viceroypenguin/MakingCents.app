@@ -5,6 +5,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<Using Include="MakingCents.Common.Ids" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<ProjectReference Include="..\Common\Common.csproj" />
 		<ProjectReference Include="..\Database\Database.csproj" />
 	</ItemGroup>

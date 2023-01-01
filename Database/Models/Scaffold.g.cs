@@ -8,6 +8,7 @@
 using LinqToDB;
 using LinqToDB.Data;
 using LinqToDB.Mapping;
+using MakingCents.Common.Ids;
 using MakingCents.Database.Models;
 using System;
 
@@ -28,9 +29,9 @@ namespace MakingCents.Database.Models
 	[Table("VersionHistory")]
 	public class VersionHistory
 	{
-		[Column("VersionHistoryId", IsPrimaryKey = true , IsIdentity = true, SkipOnInsert = true, SkipOnUpdate = true)] public int            VersionHistoryId { get; set; } // int
-		[Column("SqlFile"         , CanBeNull    = false                                                             )] public string         SqlFile          { get; set; } = null!; // varchar(50)
-		[Column("ExecutionStart"                                                                                     )] public DateTimeOffset ExecutionStart   { get; set; } // datetimeoffset(7)
-		[Column("ExecutionEnd"                                                                                       )] public DateTimeOffset ExecutionEnd     { get; set; } // datetimeoffset(7)
+		[ValueConverter(                  ConverterType = typeof(MakingCents.Common.Ids.VersionHistoryId.LinqToDbValueConverter)), Column("VersionHistoryId", IsPrimaryKey = true, IsIdentity = true, SkipOnInsert = true, SkipOnUpdate = true)] public VersionHistoryId VersionHistoryId { get; set; } // int
+		[Column        ("SqlFile"       , CanBeNull     = false                       )                                                                                                              ] public string           SqlFile          { get; set; } = null!; // varchar(50)
+		[Column        ("ExecutionStart"                                              )                                                                                                              ] public DateTimeOffset   ExecutionStart   { get; set; } // datetimeoffset(7)
+		[Column        ("ExecutionEnd"                                                )                                                                                                              ] public DateTimeOffset   ExecutionEnd     { get; set; } // datetimeoffset(7)
 	}
 }
