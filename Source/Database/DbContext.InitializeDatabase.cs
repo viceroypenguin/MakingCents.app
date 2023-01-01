@@ -19,6 +19,7 @@ public partial class DbContext : DataConnection
 
 		RunChangeScripts();
 
+		s_dbInitialized = true;
 		LogDbInitialized();
 	}
 
