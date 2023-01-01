@@ -10,6 +10,7 @@
 		<TargetFrameworks>net7.0</TargetFrameworks>
 		<AnalysisLevel>latest-all</AnalysisLevel>
 		<EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+		<TieredPGO>true</TieredPGO>
 
 		<NoWarn>$(NoWarn);SYSLIB1006</NoWarn>
 	</PropertyGroup>
