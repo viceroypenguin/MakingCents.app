@@ -16,5 +16,5 @@
 [Tt]est[Rr]esults/
 
 # Secure files
-/Database/ScaffoldArguments.targets
-/Scaffold/Properties/launchSettings.json
+/Source/Database/ScaffoldArguments.targets
+/Source/Scaffold/Properties/launchSettings.json

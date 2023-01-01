@@ -13,9 +13,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".root", ".root", "{3E2CFE92
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Data", "2. Data", "{4B1A090F-70E0-45E0-BF5D-AA24D466D832}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaffold", "Scaffold\Scaffold.csproj", "{66D7AA25-71B5-4850-9CCD-A654A68C88AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Scaffold", "Source\Scaffold\Scaffold.csproj", "{66D7AA25-71B5-4850-9CCD-A654A68C88AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Database\Database.csproj", "{127C6E14-FB6F-4440-946C-9AE7DD11AA7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Database", "Source\Database\Database.csproj", "{127C6E14-FB6F-4440-946C-9AE7DD11AA7D}"
 	ProjectSection(ProjectDependencies) = postProject
 		{66D7AA25-71B5-4850-9CCD-A654A68C88AA} = {66D7AA25-71B5-4850-9CCD-A654A68C88AA}
 	EndProjectSection
@@ -24,11 +24,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. Common", "1. Common", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Services", "3. Services", "{D9D65CE2-7C09-4C53-864E-A451F14EEE8C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Web", "4. Web", "{9D035003-5D86-49A0-815F-873CFA7B13ED}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Test", "4. Test", "{9D035003-5D86-49A0-815F-873CFA7B13ED}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csproj", "{47717B6F-42D0-451B-835E-82313651616D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Source\Common\Common.csproj", "{47717B6F-42D0-451B-835E-82313651616D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin", "Admin\Admin.csproj", "{9433AF0F-7D5E-4787-904A-E2F599C4E347}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Admin", "Source\Admin\Admin.csproj", "{9433AF0F-7D5E-4787-904A-E2F599C4E347}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5. Web", "5. Web", "{FA66AD26-3DBA-402F-8BE6-CCC68A1541B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
