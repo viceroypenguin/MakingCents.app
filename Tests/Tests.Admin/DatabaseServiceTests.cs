@@ -31,6 +31,6 @@ public sealed class DatabaseServiceTests : IClassFixture<AdminDiFixture>, IDispo
 			.Select(n => n.Replace("MakingCents.Database.Scripts.", "", StringComparison.OrdinalIgnoreCase))
 			.ToHashSet();
 
-		Assert.True(allScripts.SetEquals(runScripts.Select(r => r.SqlFile)));
+		Guard.IsTrue(allScripts.SetEquals(runScripts.Select(r => r.SqlFile)));
 	}
 }
