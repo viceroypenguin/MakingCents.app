@@ -2,6 +2,13 @@
 
 	<PropertyGroup>
 		<RootNamespace>MakingCents.Common</RootNamespace>
+
+		<NoWarn>CA1036</NoWarn>
 	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="linq2db" Version="4.4.0" />
+		<PackageReference Include="Vogen" Version="3.0.9" />
+  </ItemGroup>
 
 </Project>
