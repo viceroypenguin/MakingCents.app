@@ -7,6 +7,8 @@ using Serilog.Exceptions.Refit.Destructurers;
 using Serilog.Exceptions;
 using MakingCents.Database;
 using Serilog.Events;
+using System.Diagnostics;
+
 
 #pragma warning disable CA1852 // Type can be sealed because it has no subtypes in its containing assembly and is not externally visible
 
@@ -86,6 +88,9 @@ catch (Exception ex) when (
 }
 finally
 {
-	Log.Information("Shut down complete");
-	Log.CloseAndFlush();
+	if (new StackTrace().FrameCount == 1)
+	{
+		Log.Information("Shut down complete");
+		Log.CloseAndFlush();
+	}
 }
