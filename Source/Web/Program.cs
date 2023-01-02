@@ -8,7 +8,6 @@ using Serilog.Exceptions;
 using MakingCents.Database;
 using Serilog.Events;
 
-#pragma warning disable CA1031 // Do not catch general exception types
 #pragma warning disable CA1852 // Type can be sealed because it has no subtypes in its containing assembly and is not externally visible
 
 Log.Logger = new LoggerConfiguration()
@@ -79,7 +78,9 @@ try
 
 	app.Run();
 }
-catch (Exception ex)
+catch (Exception ex) when (
+	ex is not HostAbortedException
+	&& !ex.GetType().Name.Equals("StopTheHostException", StringComparison.Ordinal))
 {
 	Log.Fatal(ex, "unhandled exception");
 }
