@@ -40,11 +40,6 @@
 			<ScaffoldInput Include="--model-namespace=&quot;$(ScaffoldModelNamespace)&quot;" />
 			<ScaffoldInput Include="--connection-string=&quot;$(ScaffoldConnectionString)&quot;" />
 		</ItemGroup>
-
-		<ItemGroup>
-			<Compile Remove="$(ScaffoldOutput)" />
-			<Compile Include="$(ScaffoldOutput)" />
-		</ItemGroup>
 	</Target>
 
 	<Target Name="ScaffoldCore" Inputs="@(ScaffoldFiles);$(MSBuildThisFileDirectory)/bin/$(Configuration)/net7.0/scaffold.exe" Outputs="$(ScaffoldOutput)">

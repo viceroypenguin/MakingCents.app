@@ -20,8 +20,6 @@
 
 	<ItemGroup>
 		<Folder Include="Models\" />
-		<Compile Remove="Models\*.cs" />
-		<None Include="Models\*.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
