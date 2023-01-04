@@ -46,6 +46,11 @@ try
 	builder.Services.AddEndpointsApiExplorer();
 	builder.Services.AddSwaggerGen();
 
+	builder.Services.AddResponseCompression(options =>
+	{
+		options.EnableForHttps = true;
+	});
+
 	var app = builder.Build();
 
 	using (var scope = app.Services.CreateScope())
